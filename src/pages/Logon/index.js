@@ -34,7 +34,7 @@ export default function Logon() {
     <div className='body'>
       <div className='Container'>
         <form onSubmit={handleSignIn}>
-          <img src={Logo} alt="Airbnb logo" />
+          <img src={Logo} alt="LeColombe Royale logo" />
           <input
             type="email"
             placeholder="Endereço de e-mail"

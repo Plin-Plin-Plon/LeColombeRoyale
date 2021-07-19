@@ -14,7 +14,7 @@ export default function Kitchen() {
     history.push('/');
   }
 
-  function handleItemConclusion(){
+  function handleItemConclusion() {
     //Função pra alterar o estados do pedido para concluido
   }
 
@@ -23,7 +23,7 @@ export default function Kitchen() {
       <div className="container">
         <header>
           <div>
-            <img src={Logo} alt="LeColombe Royale"></img>
+            <img src={Logo} alt="LeColombe Royale Kitchen logo"></img>
             <span>LeColombe Royale kitchen</span>
           </div>
           <button onClick={handleLogout} type="button">
@@ -34,7 +34,7 @@ export default function Kitchen() {
         <h1>Pratos pendentes:</h1>
         <div className="listContainer">
           <ul>
-          <li>
+            <li>
               <strong>Código do prato: 1</strong>
               <strong>Descrição:</strong>
               <p>Que descrição boa</p>

@@ -25,9 +25,9 @@ export default function Register() {
 
       alert('Cadastrado com sucesso');
       history.push('/logon');
-      
+
     } catch (err) {
-      alert('Erro no cadstro, tente novamente');
+      alert('Erro no cadastro, tente novamente');
     }
 
   }
@@ -36,7 +36,7 @@ export default function Register() {
     <div className="body">
       <div className="register-container">
         <form onSubmit={handleRegister}>
-          <img src={Logo} alt="Airbnb logo" />
+          <img src={Logo} alt="LeColombe Royale logo" />
           <input
             type="text"
             placeholder="Nome de usuário"
