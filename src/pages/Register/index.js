@@ -7,11 +7,22 @@ import Logo from '../../assets/pombo.jpg'
 export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [cep, setCep] = useState('');
+  const [logradouro, setLogradouro] = useState('');
+  const [numero, setNumero] = useState('');
+  const [bairro, setBairro] = useState('');
+  const [cidade, setCidade] = useState('');
+  const [estado, setEstado] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [celular, setCelular] = useState('');
+  const [cargo, setCargo] = useState('');
+  const [salario, setSalario] = useState('');
 
   const history = useHistory();
 
   async function handleRegister(e) {
+    /*
     e.preventDefault();
 
     const data = {
@@ -29,6 +40,7 @@ export default function Register() {
     } catch (err) {
       alert('Erro no cadastro, tente novamente');
     }
+    */
 
   }
 
@@ -37,25 +49,127 @@ export default function Register() {
       <div className="register-container">
         <form onSubmit={handleRegister}>
           <img src={Logo} alt="LeColombe Royale logo" />
-          <input
-            type="text"
-            placeholder="Nome de usuário"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
-          <input
-            type="email"
-            placeholder="Endereço de e-mail"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Senha"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-          <button type="submit">Cadastrar usuário</button>
+          <ul>
+
+          <li>
+              <input
+                type="text"
+                placeholder="Nome"
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
+            </li>
+
+            <li>
+              <input
+                type="text"
+                placeholder="CPF"
+                value={cpf}
+                onChange={e => setCpf(e.target.value)}
+              />
+            </li>
+
+
+            <li>
+              <input
+                type="text"
+                placeholder="CEP"
+                value={cep}
+                onChange={e => setCep(e.target.value)}
+              />
+            </li>
+
+            <li>
+              <input
+                type="text"
+                placeholder="Logradouro"
+                value={logradouro}
+                onChange={e => setLogradouro(e.target.value)}
+              />
+            </li>
+
+            <li>
+              <input
+                type="text"
+                placeholder="Numero"
+                value={numero}
+                onChange={e => setNumero(e.target.value)}
+              />
+            </li>
+
+            <li>
+              <input
+                type="text"
+                placeholder="Bairro"
+                value={bairro}
+                onChange={e => setBairro(e.target.value)}
+              />
+            </li>
+
+            <li>
+              <input
+                type="text"
+                placeholder="Cidade"
+                value={cidade}
+                onChange={e => setCidade(e.target.value)}
+              />
+            </li>
+
+            <li>
+              <input
+                type="text"
+                placeholder="Estado"
+                value={estado}
+                onChange={e => setEstado(e.target.value)}
+              />
+            </li>
+
+            <li>
+              <input
+                type="email"
+                placeholder="E-mail"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+              />
+            </li>
+
+            <li>
+              <input
+                type="text"
+                placeholder="Telefone"
+                value={telefone}
+                onChange={e => setTelefone(e.target.value)}
+              />
+            </li>
+
+            <li>
+              <input
+                type="text"
+                placeholder="Celular"
+                value={celular}
+                onChange={e => setCelular(e.target.value)}
+              />
+            </li>
+
+            <li>
+              <input
+                type="text"
+                placeholder="Cargo"
+                value={cargo}
+                onChange={e => setCargo(e.target.value)}
+              />
+            </li>
+
+            <li>
+              <input
+                type="number"
+                placeholder="Salario"
+                value={salario}
+                onChange={e => setSalario(e.target.value)}
+              />
+            </li>
+          </ul>
+          <button type="submit">Cadastrar funcionário</button>
           <hr />
           <Link to="/logon">Fazer login</Link>
         </form>

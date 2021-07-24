@@ -12,9 +12,10 @@
 }
 
 .register-container form {
-    width: 400px;
+    width: 600px;
     background: #fff;
     padding: 20px;
+    padding-right: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,6 +24,7 @@
 .register-container img {
     width: 100px;
     margin: 10px 0 40px;
+    padding-left: 70px;
 }
 
 .register-container p {
@@ -52,7 +54,7 @@
     height: 56px;
     border: 0;
     border-radius: 5px;
-    width: 100%;
+    width: 65%;
     cursor: pointer;
 }
 
@@ -72,4 +74,17 @@
     font-weight: bold;
     color: #999;
     text-decoration: none;
+}
+
+.register-container ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 0px;
+    column-gap: 40px;
+    list-style: none;
+}
+
+.register-container ul li {
+    padding: px;
+    position: relative;
 }
