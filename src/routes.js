@@ -5,6 +5,7 @@ import Logon from './pages/Logon'
 import Logado from './pages/Logado'
 import Register from './pages/Register'
 import Kitchen from './pages/Kitchen'
+import Access from './pages/Access'
 import Navbar from './Components/Navbar/Navbar';
 
 export default function routes() {
@@ -16,6 +17,7 @@ export default function routes() {
         <Route path="/logado" component={Logado} />
         <Route path="/" exact component={Register} />
         <Route path="/kitchen" exact component={Kitchen} />
+        <Route path="/access" exact component={Access} />
       </switch>
     </BrowserRouter>
   );

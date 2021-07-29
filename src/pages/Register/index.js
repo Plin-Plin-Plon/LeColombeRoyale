@@ -182,7 +182,7 @@ export default function Register() {
               </li>
             </div>
           </ul>
-          
+
           {toggle ? (
             <button type="submit">Cadastrar Funcionário</button>
           ) : (
