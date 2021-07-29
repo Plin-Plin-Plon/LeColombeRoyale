@@ -11,6 +11,17 @@
     height: 100vh;
 }
 
+.register-container span{
+    color: #777;
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+.switch{
+    display: flex;
+    padding-left: 70px;
+}
+
 .register-container form {
     width: 600px;
     background: #fff;
@@ -19,6 +30,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 8px;
 }
 
 .register-container img {
@@ -41,10 +53,15 @@
     border-radius: 8px;
     margin-bottom: 15px;
     padding: 0 20px;
-    color: #777;
+    color: #111;
     font-size: 20px;
     width: 90%;
     border: 2px solid #ddd;
+}
+
+.inputOff input{
+    opacity: 50%;
+    background-color: #eee;
 }
 
 .register-container button {

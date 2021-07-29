@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import './styles.css';
 import api from '../../services/api'
 import Logo from '../../assets/pombo.jpg'
+import Switch from "react-switch";
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -18,6 +19,9 @@ export default function Register() {
   const [celular, setCelular] = useState('');
   const [cargo, setCargo] = useState('');
   const [salario, setSalario] = useState('');
+
+  const [toggle, setToggle] = useState(true);
+  const handleSwitch = () => setToggle(!toggle)
 
   const history = useHistory();
 
@@ -44,14 +48,20 @@ export default function Register() {
 
   }
 
+
   return (
     <div className="body">
       <div className="register-container">
         <form onSubmit={handleRegister}>
           <img src={Logo} alt="LeColombe Royale logo" />
-          <ul>
 
-          <li>
+          <div className="switch">
+            <span>Cadastrar funcionário </span>
+            <Switch onChange={handleSwitch} checked={toggle} />
+          </div>
+
+          <ul>
+            <li>
               <input
                 type="text"
                 placeholder="Nome"
@@ -68,7 +78,6 @@ export default function Register() {
                 onChange={e => setCpf(e.target.value)}
               />
             </li>
-
 
             <li>
               <input
@@ -151,25 +160,35 @@ export default function Register() {
               />
             </li>
 
-            <li>
-              <input
-                type="text"
-                placeholder="Cargo"
-                value={cargo}
-                onChange={e => setCargo(e.target.value)}
-              />
-            </li>
+            <div className={toggle ? 'inputOn' : 'inputOff'}>
+              <li>
+                <input
+                  type="text"
+                  placeholder="Cargo"
+                  value={cargo}
+                  onChange={e => setCargo(e.target.value)}
+                  disabled={!toggle}
+                />
+              </li>
 
-            <li>
-              <input
-                type="number"
-                placeholder="Salario"
-                value={salario}
-                onChange={e => setSalario(e.target.value)}
-              />
-            </li>
+              <li>
+                <input
+                  type="number"
+                  placeholder="Salario"
+                  value={salario}
+                  onChange={e => setSalario(e.target.value)}
+                  disabled={!toggle}
+                />
+              </li>
+            </div>
           </ul>
-          <button type="submit">Cadastrar funcionário</button>
+          
+          {toggle ? (
+            <button type="submit">Cadastrar Funcionário</button>
+          ) : (
+            <button type="submit">Cadastrar Hóspede</button>
+          )}
+
           <hr />
           <Link to="/logon">Fazer login</Link>
         </form>
