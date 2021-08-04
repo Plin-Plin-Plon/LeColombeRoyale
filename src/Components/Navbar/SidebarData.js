@@ -30,4 +30,18 @@ export const SidebarData = [
     cName: 'nav-text'
   },
 
+  {
+    title: 'Cadastrar hospedagem',
+    path: '/accomodation',
+    icon: <AiIcons.AiFillHome />,
+    cName: 'nav-text'
+  },
+
+  {
+    title: 'Serviços',
+    path: '/servicing',
+    icon: <AiIcons.AiFillHome />,
+    cName: 'nav-text'
+  },
+
 ];
