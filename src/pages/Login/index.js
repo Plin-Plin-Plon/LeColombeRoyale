@@ -6,7 +6,7 @@ import Logo from '../../assets/pombo.jpg';
 import api from '../../services/api'
 import './styles.css';
 
-export default function Logon() {
+export default function Login() {
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
 
@@ -29,7 +29,7 @@ export default function Logon() {
     };
 
     await api
-      .post('/acesso/login', data)
+      .post('acesso/login', data)
       .then(async res => {
         await storeData('token', res.data.token);
         await storeData('username', usuario);
