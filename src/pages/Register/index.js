@@ -8,23 +8,36 @@ import Switch from "react-switch";
 
 
 export default function Register() {
+  const history = useHistory();
   const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
-  const [cep, setCep] = useState('');
-  const [logradouro, setLogradouro] = useState('');
-  const [numero, setNumero] = useState('');
-  const [bairro, setBairro] = useState('');
-  const [cidade, setCidade] = useState('');
-  const [estado, setEstado] = useState('');
-  const [telefone, setTelefone] = useState('');
-  const [celular, setCelular] = useState('');
+
+  const [endereco, setEndereco] = useState({
+    cep: '',
+    logradouro: '',
+    numero: '',
+    bairro: '',
+    cidade: '',
+    estado: ''
+  });
+
+  const [contato, setContato] = useState({
+    telResidencial: '',
+    telCelular: '',
+    email: ''
+  });
+
+  /* Campos do funcionário */
   const [cargo, setCargo] = useState('');
   const [salario, setSalario] = useState('');
+
+  /* Campos do hóspede */
+  const [premium, setPremium] = useState(false);
+
+  /* Campos do acesso a ser criado */
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmation, setConfirmation] = useState('');
-  const [premium, setPremium] = useState(false);
 
   /* Toggle:
       True  -> Funcionário
@@ -34,29 +47,17 @@ export default function Register() {
   const handleSwitch = () => setToggle(!toggle);
   const handlePremium = () => setPremium(!premium);
 
-  const history = useHistory();
-
   async function handleRegister(e) {
     e.preventDefault();
-
-    console.log(premium);
 
     if (senha === confirmation) {
       const data = {
         nome,
-        email,
         cpf,
-        cep,
-        logradouro,
-        numero,
-        bairro,
-        cidade,
-        estado,
-        telefone,
-        celular,
+        endereco,
+        contato,
         usuario,
-        senha,
-        premium
+        senha
       };
 
       if (toggle) {
@@ -66,16 +67,15 @@ export default function Register() {
         data.premium = premium;
       }
 
-      try {
-        const response = await api.post(toggle ? "acesso/register?func=1" : "acesso/register", data);
-
-        alert('Cadastrado com sucesso');
-        history.push('/logon');
-
-      } catch (err) {
-        alert('Erro no cadastro, tente novamente');
-        console.log(err);
-      }
+      await api
+        .post(toggle ? "acesso/register?func=1" : "acesso/register", data)
+        .then(res => {
+          alert('Cadastrado com sucesso');
+          history.push('/logon');
+        }).catch(err => {
+          alert('Erro no cadastro, tente novamente');
+          console.log(err);
+        });
     } else {
       alert('As senhas não batem, verifique os campos e tente novamente');
     }
@@ -116,8 +116,8 @@ export default function Register() {
               <input
                 type="text"
                 placeholder="CEP"
-                value={cep}
-                onChange={e => setCep(cepMask(e.target.value))}
+                value={endereco.cep}
+                onChange={e => setEndereco({ ...endereco, cep: cepMask(e.target.value) })}
               />
             </li>
 
@@ -125,8 +125,8 @@ export default function Register() {
               <input
                 type="text"
                 placeholder="Logradouro"
-                value={logradouro}
-                onChange={e => setLogradouro(e.target.value)}
+                value={endereco.logradouro}
+                onChange={e => setEndereco({ ...endereco, logradouro: e.target.value })}
               />
             </li>
 
@@ -134,8 +134,8 @@ export default function Register() {
               <input
                 type="number"
                 placeholder="Numero"
-                value={numero}
-                onChange={e => setNumero(e.target.value)}
+                value={endereco.numero}
+                onChange={e => setEndereco({ ...endereco, numero: e.target.value })}
               />
             </li>
 
@@ -143,8 +143,8 @@ export default function Register() {
               <input
                 type="text"
                 placeholder="Bairro"
-                value={bairro}
-                onChange={e => setBairro(e.target.value)}
+                value={endereco.bairro}
+                onChange={e => setEndereco({ ...endereco, bairro: e.target.value })}
               />
             </li>
 
@@ -152,8 +152,8 @@ export default function Register() {
               <input
                 type="text"
                 placeholder="Cidade"
-                value={cidade}
-                onChange={e => setCidade(e.target.value)}
+                value={endereco.cidade}
+                onChange={e => setEndereco({ ...endereco, cidade: e.target.value })}
               />
             </li>
 
@@ -161,8 +161,8 @@ export default function Register() {
               <input
                 type="text"
                 placeholder="Estado"
-                value={estado}
-                onChange={e => setEstado(e.target.value)}
+                value={endereco.estado}
+                onChange={e => setEndereco({ ...endereco, estado: e.target.value })}
               />
             </li>
 
@@ -170,8 +170,8 @@ export default function Register() {
               <input
                 type="email"
                 placeholder="E-mail"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+                value={contato.email}
+                onChange={e => setContato({ ...contato, email: e.target.value })}
               />
             </li>
 
@@ -179,8 +179,8 @@ export default function Register() {
               <input
                 type="text"
                 placeholder="Telefone"
-                value={telefone}
-                onChange={e => setTelefone(telefoneMask(e.target.value))}
+                value={contato.telResidencial}
+                onChange={e => setContato({ ...contato, telResidencial: telefoneMask(e.target.value) })}
               />
             </li>
 
@@ -188,8 +188,8 @@ export default function Register() {
               <input
                 type="text"
                 placeholder="Celular"
-                value={celular}
-                onChange={e => setCelular(celularMask(e.target.value))}
+                value={contato.telCelular}
+                onChange={e => setContato({ ...contato, telCelular: celularMask(e.target.value) })}
               />
             </li>
 
