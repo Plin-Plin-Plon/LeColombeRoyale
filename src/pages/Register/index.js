@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './styles.css';
+import { cpfMask, celularMask, telefoneMask, cepMask } from "masks-br";
 import api from '../../services/api'
 import Logo from '../../assets/pombo.jpg'
 import Switch from "react-switch";
 
+
 export default function Register() {
-  const [name, setName] = useState('');
+  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
   const [cep, setCep] = useState('');
@@ -19,35 +21,65 @@ export default function Register() {
   const [celular, setCelular] = useState('');
   const [cargo, setCargo] = useState('');
   const [salario, setSalario] = useState('');
+  const [usuario, setUsuario] = useState('');
+  const [senha, setSenha] = useState('');
+  const [confirmation, setConfirmation] = useState('');
+  const [premium, setPremium] = useState(false);
 
-  const [toggle, setToggle] = useState(true);
-  const handleSwitch = () => setToggle(!toggle)
+  /* Toggle:
+      True  -> Funcionário
+      False -> Hóspede 
+  */
+  const [toggle, setToggle] = useState(false);
+  const handleSwitch = () => setToggle(!toggle);
+  const handlePremium = () => setPremium(!premium);
 
   const history = useHistory();
 
   async function handleRegister(e) {
-    /*
     e.preventDefault();
 
-    const data = {
-      name,
-      email,
-      password,
-    };
+    console.log(premium);
 
-    try {
-      const response = await api.post('/user', data);
+    if (senha === confirmation) {
+      const data = {
+        nome,
+        email,
+        cpf,
+        cep,
+        logradouro,
+        numero,
+        bairro,
+        cidade,
+        estado,
+        telefone,
+        celular,
+        usuario,
+        senha,
+        premium
+      };
 
-      alert('Cadastrado com sucesso');
-      history.push('/logon');
+      if (toggle) {
+        data.cargo = cargo;
+        data.salario = salario;
+      } else {
+        data.premium = premium;
+      }
 
-    } catch (err) {
-      alert('Erro no cadastro, tente novamente');
+      try {
+        const response = await api.post(toggle ? "acesso/register?func=1" : "acesso/register", data);
+
+        alert('Cadastrado com sucesso');
+        history.push('/logon');
+
+      } catch (err) {
+        alert('Erro no cadastro, tente novamente');
+        console.log(err);
+      }
+    } else {
+      alert('As senhas não batem, verifique os campos e tente novamente');
     }
-    */
-
   }
-
 
   return (
     <div className="body">
@@ -65,8 +97,8 @@ export default function Register() {
               <input
                 type="text"
                 placeholder="Nome"
-                value={name}
-                onChange={e => setName(e.target.value)}
+                value={nome}
+                onChange={e => setNome(e.target.value)}
               />
             </li>
 
@@ -74,8 +106,9 @@ export default function Register() {
               <input
                 type="text"
                 placeholder="CPF"
+                maxLength="14"
                 value={cpf}
-                onChange={e => setCpf(e.target.value)}
+                onChange={e => setCpf(cpfMask(e.target.value))}
               />
             </li>
 
@@ -84,7 +117,7 @@ export default function Register() {
                 type="text"
                 placeholder="CEP"
                 value={cep}
-                onChange={e => setCep(e.target.value)}
+                onChange={e => setCep(cepMask(e.target.value))}
               />
             </li>
 
@@ -99,7 +132,7 @@ export default function Register() {
 
             <li>
               <input
-                type="text"
+                type="number"
                 placeholder="Numero"
                 value={numero}
                 onChange={e => setNumero(e.target.value)}
@@ -147,7 +180,7 @@ export default function Register() {
                 type="text"
                 placeholder="Telefone"
                 value={telefone}
-                onChange={e => setTelefone(e.target.value)}
+                onChange={e => setTelefone(telefoneMask(e.target.value))}
               />
             </li>
 
@@ -156,31 +189,67 @@ export default function Register() {
                 type="text"
                 placeholder="Celular"
                 value={celular}
-                onChange={e => setCelular(e.target.value)}
+                onChange={e => setCelular(celularMask(e.target.value))}
               />
             </li>
 
-            <div className={toggle ? 'inputOn' : 'inputOff'}>
-              <li>
-                <input
-                  type="text"
-                  placeholder="Cargo"
-                  value={cargo}
-                  onChange={e => setCargo(e.target.value)}
-                  disabled={!toggle}
-                />
-              </li>
+            {toggle ?
+              <div className="worker-fields">
+                <li>
+                  <input
+                    type="text"
+                    placeholder="Cargo"
+                    value={cargo}
+                    onChange={e => setCargo(e.target.value)}
+                    disabled={!toggle}
+                  />
+                </li>
 
-              <li>
-                <input
-                  type="number"
-                  placeholder="Salario"
-                  value={salario}
-                  onChange={e => setSalario(e.target.value)}
-                  disabled={!toggle}
-                />
-              </li>
-            </div>
+                <li>
+                  <input
+                    type="number"
+                    placeholder="Salário"
+                    value={salario}
+                    onChange={e => setSalario(e.target.value)}
+                    disabled={!toggle}
+                  />
+                </li>
+              </div>
+              :
+              <div className="switch-premium">
+                <span>Quer ser usuário premium?</span>
+                <Switch onChange={handlePremium} checked={premium} />
+              </div>}
+          </ul>
+
+          <hr />
+          {!toggle ? (
+            <span>Agora só falta criar seu acesso</span>
+          ) : (
+            <span>Acesso para o funcionário</span>
+          )}
+
+          <ul>
+            <input
+              type="text"
+              placeholder="Nome de usuário"
+              value={usuario}
+              onChange={e => setUsuario(e.target.value)}
+            />
+
+            <input
+              type="password"
+              placeholder="Senha"
+              value={senha}
+              onChange={e => setSenha(e.target.value)}
+            />
+
+            <input
+              type="password"
+              placeholder="Confirmar Senha"
+              value={confirmation}
+              onChange={e => setConfirmation(e.target.value)}
+            />
           </ul>
 
           {toggle ? (
