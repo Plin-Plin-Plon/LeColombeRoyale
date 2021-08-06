@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './styles.css';
 import api from '../../services/api'
@@ -6,27 +6,27 @@ import Logo from '../../assets/pombo.jpg'
 import { FiPower, FiTrash2 } from 'react-icons/fi';
 
 export default function Servicing() {
+  const [services, setServices] = useState([]);
   const history = useHistory();
-
 
   function handleLogout() {
     localStorage.clear();
     history.push('/');
   }
 
-  const services = [
-    {
-      "id": 5,
-      "descricao": "Sopa de espinafre com trakinas",
-      "val": 999999
-    },
-    {
-      "id": 1,
-      "descricao": "Feijão com pipoca",
-      "val": 12
+  useEffect(() => {
+    async function fetchServices() {
+      await api
+        .get("servico/index")
+        .then(res => {
+          setServices(res.data);
+        }).catch(err => {
+          console.log(err);
+        });
     }
-  ]
 
+    fetchServices();
+  })
 
   return (
     <div className="body">
@@ -45,11 +45,13 @@ export default function Servicing() {
         <div className="listContainer">
           <ul>
             {services.map(services => (
-              <li key={services.id}>
-                <strong>Código do prato: {services.id}</strong>
-                <strong>Descrição:</strong>
+              <li key={services.idServico}>
+                <div className="title">
+                  <strong>{services.nome}</strong>
+                </div>
                 <p>{services.descricao}</p>
-                <strong>Valor: {services.val}</strong>
+                <strong>Preço: R${services.preco}</strong>
+                <p>Código: {services.idServico}</p>
               </li>
             ))}
           </ul>
