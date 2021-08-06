@@ -44,16 +44,23 @@ export default function Servicing() {
         <h1>Nossos pratos:</h1>
         <div className="listContainer">
           <ul>
-            {services.map(services => (
-              <li key={services.idServico}>
-                <div className="title">
-                  <strong>{services.nome}</strong>
-                </div>
-                <p>{services.descricao}</p>
-                <strong>Preço: R${services.preco}</strong>
-                <p>Código: {services.idServico}</p>
-              </li>
-            ))}
+            {services.length !== 0 ?
+
+              services.map(services => (
+                <li key={services.idServico}>
+                  <div className="title">
+                    <strong>{services.nome}</strong>
+                  </div>
+                  <p>{services.descricao}</p>
+                  <strong>Preço: R${services.preco}</strong>
+                  <p>Código: {services.idServico}</p>
+                </li>
+              ))
+              :
+              <div className="no-service-found">
+                <span>Nenhum prato encontrado</span>
+              </div>
+            }
           </ul>
         </div>
       </div>
