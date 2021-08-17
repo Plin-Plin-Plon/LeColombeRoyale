@@ -1,65 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import Logo from '../../assets/pombo.jpg';
-import api from '../../services/api';
-import './styles.css';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import api from '../../services/api';
+
 import { FiPower, FiLogOut } from 'react-icons/fi';
+import Logo from '../../assets/pombo.jpg';
+import './styles.css';
 
 export default function Guesthome() {
-
+  const [username, setUsername] = useState("");
+  const [userId, setUserId] = useState("");
+  const [roomNumber, setRoomNumber] = useState("");
+  const [totalValue, setTotalValue] = useState("");
+  const [orders, setOrders] = useState([]);
   const history = useHistory();
 
-  /*useEffect(() =>{
-    async function getUsername() {
+  useEffect(() => {
+    async function loadData(key, setData) {
       try {
-        const username = await AsyncStorage.getItem('username').then(value => {
-          setUsername(value);
+        const data = await AsyncStorage.getItem(key).then(value => {
+          setData(value);
         });
-        return username;
+        return data;
       } catch (err) {
         return null;
       }
     }
 
-    getUsername();
+    loadData('username', setUsername);
+    loadData('user_id', setUserId);
   })
 
   useEffect(() => {
-    async function fetchAccomodation(){
-      await api
-        .get("hospedagem/index", 
-        {id: id})
+    if (userId) {
+      async function fetchAccomodation() {
+        await api
+          .get(`hospedagem/index?idHospede=${userId}`)
+          .then(async res => {
+            setRoomNumber(res.data.quarto.numero);
+            setTotalValue(res.data.valorTotal);
+            setOrders(res.data.pedidos);
+          }).catch(async err => {
+            console.log(err);
+          })
+      }
+
+      fetchAccomodation();
     }
-  })*/
+  }, [userId]);
 
-  const services = [
-    {
-      "idServico": 5,
-      "nome": "pedido1",
-      "descricao": "descricao do pedido 1 aaaaaaaaaaaaaaaaaaaaaaaa",
-      "preco": 5001
-    },
-
-    {
-      "idServico": 7,
-      "nome": "pedido2",
-      "descricao": "descricao do pedido 2 aaaaaaaaaaaaaaaaaaaaaaaa",
-      "preco": 5001
-    },
-
-    {
-      "idServico": 6,
-      "nome": "pedido3",
-      "descricao": "descricao do pedido 3 aaaaaaaaaaaaaaaaaaaaaaaa",
-      "preco": 5001
+  async function handleLogout() {
+    try {
+      await AsyncStorage.clear();
+      alert('Logout efetuado com sucesso');
+      history.push('/');
+    } catch (err) {
+      alert('Logout', 'Houve um erro ao sair');
     }
-  ]
-    
-
-  function handleLogout() {
-    localStorage.clear();
-    history.push('/');
   }
 
   return (
@@ -69,40 +67,43 @@ export default function Guesthome() {
         <header>
           <div>
             <img src={Logo} alt="LeColombe Royale Kitchen logo"></img>
-            <span>Bem vindo usuário!</span>
+            <span>Bem vindo, {username}!</span>
           </div>
           <button onClick={handleLogout} type="button">
             <FiLogOut size={18} color="#e02041"></FiLogOut>
           </button>
         </header>
+
         <div className="Value">
           <div>
-            <span>Numero do quarto: 420</span>
+            <span>Numero do quarto: {roomNumber}</span>
           </div>
-          <span>Valor atual da estadia: R$ 00.00</span>
+          <span>Valor atual da estadia: R$ {totalValue}</span>
         </div>
         <div className="menuButton">
           <button>Veja nossos pratos</button>
         </div>
+
         <h1>Seus pedidos:</h1>
         <ul>
-            {services.length !== 0 ?
-              services.map(services => (
-                <li key={services.idServico}>
-                  <div className="title">
-                    <strong>{services.nome}</strong>
-                  </div>
-                  <p>{services.descricao}</p>
-                  <strong>Preço: R${services.preco}</strong>
-                  <p>Código: {services.idServico}</p>
-                </li>
-              ))
-              :
-              <div className="no-service-found">
-                <span>Nenhum prato encontrado</span>
-              </div>
-            }
-          </ul>
+          {orders.length !== 0 ?
+            orders.map(orders => (
+              <li key={orders.idPedido}>
+                <div className="title">
+                  <strong>{orders.servico.nome}</strong>
+                </div>
+                <p>{orders.servico.descricao}</p>
+                <strong>Preço: R${orders.servico.preco}</strong>
+                <strong>Avaliação: {orders.avaliacaoServico ? orders.avaliacaoServico : "não avaliado"}</strong>
+                <p>Código: {orders.idPedido}</p>
+              </li>
+            ))
+            :
+            <div className="no-service-found">
+              <span>Nenhum pedido encontrado</span>
+            </div>
+          }
+        </ul>
       </div>
     </div>
   );
