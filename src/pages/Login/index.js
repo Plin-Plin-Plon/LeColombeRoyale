@@ -33,6 +33,7 @@ export default function Login() {
       .then(async res => {
         await storeData('token', res.data.token);
         await storeData('username', usuario);
+        await storeData
         
         alert('Sessão iniciada');
         history.push('/logado');

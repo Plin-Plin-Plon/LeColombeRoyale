@@ -8,6 +8,7 @@ import Kitchen from './pages/Kitchen'
 import Navbar from './Components/Navbar/Navbar'
 import Acommodation from './pages/Accommodation'
 import Servicing from './pages/Servicing'
+import GuestHome from './pages/GuestHome'
 
 export default function routes() {
   return (
@@ -20,6 +21,7 @@ export default function routes() {
         <Route path="/kitchen" exact component={Kitchen} />
         <Route path="/accomodation" exact component={Acommodation} />
         <Route path="/servicing" exact component={Servicing} />
+        <Route path="/guesthome" exact component={GuestHome} />
       </switch>
     </BrowserRouter>
   );

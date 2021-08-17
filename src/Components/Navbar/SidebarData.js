@@ -37,4 +37,11 @@ export const SidebarData = [
     cName: 'nav-text'
   },
 
+  {
+    title: 'Minha hospedagem',
+    path: '/guesthome',
+    icon: <AiIcons.AiFillHome />,
+    cName: 'nav-text'
+  }
+
 ];
