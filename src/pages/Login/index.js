@@ -33,11 +33,12 @@ export default function Login() {
       .then(async res => {
         await storeData('token', res.data.token);
         await storeData('username', usuario);
-        await storeData
+        await storeData('user_id', res.data.idPessoa);
         
         alert('Sessão iniciada');
         history.push('/logado');
-      }).catch(err => {
+      }).catch(async err => {
+        await AsyncStorage.clear();
         alert('Credenciais inválidas');
         console.log(err);
       });
