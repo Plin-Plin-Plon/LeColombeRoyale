@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import api from '../../services/api'
@@ -8,10 +8,43 @@ import Logo from '../../assets/pombo.jpg'
 import './styles.css';
 
 export default function Kitchen() {
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
   const history = useHistory();
 
-  function handleItemConclusion() {
-    //Função pra alterar o estados do pedido para concluido
+  useEffect(() => {
+    if (loading) {
+      async function fetchNotConcludedOrders() {
+        await api
+          .get("pedido/index?concluido=false")
+          .then(res => {
+            setOrders(res.data);
+            setLoading(false);
+          }).catch(err => {
+            alert('Houve um erro de conexão');
+            console.log(err);
+          })
+      }
+
+      fetchNotConcludedOrders();
+    }
+  }, [loading])
+
+  async function handleItemConclusion(order) {
+    const data = {
+      idPedido: order.idPedido,
+      concluido: true
+    }
+
+    await api
+      .patch("pedido/update", data)
+      .then(res => {
+        alert('Pedido concluído com sucesso');
+        setLoading(true);
+      }).catch(err => {
+        alert('Houve um erro ao concluir o pedido');
+        console.log(err);
+      })
   }
 
   return (
@@ -25,56 +58,29 @@ export default function Kitchen() {
           <Logout />
         </header>
 
-        <h1>Pratos pendentes:</h1>
+        <h1>Pedidos pendentes:</h1>
         <div className="listContainer">
           <ul>
-            <li>
-              <strong>Código do prato: 1</strong>
-              <strong>Descrição:</strong>
-              <p>Que descrição boa</p>
-              <strong>Entregar no quarto: 9</strong>
-              <button>Concluido</button>
-            </li>
-
-            <li>
-              <strong>Código do prato: 1</strong>
-              <strong>Descrição:</strong>
-              <p>Que descrição boa</p>
-              <strong>Entregar no quarto: 9</strong>
-              <button>Concluido</button>
-            </li>
-
-            <li>
-              <strong>Código do prato: 1</strong>
-              <strong>Descrição:</strong>
-              <p>Que descrição boa</p>
-              <strong>Entregar no quarto: 9</strong>
-              <button>Concluido</button>
-            </li>
-
-            <li>
-              <strong>Código do prato: 1</strong>
-              <strong>Descrição:</strong>
-              <p>Que descrição boa</p>
-              <strong>Entregar no quarto: 9</strong>
-              <button>Concluido</button>
-            </li>
-
-            <li>
-              <strong>Código do prato: 1</strong>
-              <strong>Descrição:</strong>
-              <p>Que descrição boa</p>
-              <strong>Entregar no quarto: 9</strong>
-              <button>Concluido</button>
-            </li>
-
-            <li>
-              <strong>Código do prato: 1</strong>
-              <strong>Descrição:</strong>
-              <p>Que descrição boa</p>
-              <strong>Entregar no quarto: 9</strong>
-              <button>Concluido</button>
-            </li>
+            {orders.length !== 0 ?
+              orders.map(order => (
+                <li key={order.idPedido}>
+                  <div className="title">
+                    <strong>{order.servico.nome}</strong>
+                  </div>
+                  <p>Código do pedido: {order.idPedido}</p>
+                  <p>Código do prato: {order.servico.idServico}</p>
+                  <p>{order.servico.descricao}</p>
+                  <strong>Entregar no quarto: {order.quarto.numero}</strong>
+                  <button onClick={() => {handleItemConclusion(order)}} type="button">
+                    Concluido
+                  </button>
+                </li>
+              ))
+              :
+              <div className="no-order-found">
+                <span>Nenhum pedido pendente</span>
+              </div>
+            }
           </ul>
         </div>
       </div>
