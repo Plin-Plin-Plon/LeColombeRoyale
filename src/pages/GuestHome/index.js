@@ -60,6 +60,10 @@ export default function Guesthome() {
     }
   }
 
+  async function navigateToServices() {
+    history.push('/servicing');
+  }
+
   return (
     <div className="body">
       <div className="container">
@@ -81,7 +85,9 @@ export default function Guesthome() {
           <span>Valor atual da estadia: R$ {totalValue}</span>
         </div>
         <div className="menuButton">
-          <button>Veja nossos pratos</button>
+          <button onClick={navigateToServices} type="button">
+            Veja nossos pratos
+          </button>
         </div>
 
         <h1>Seus pedidos:</h1>
