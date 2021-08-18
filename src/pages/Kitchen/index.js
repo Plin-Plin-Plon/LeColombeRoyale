@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import './styles.css';
+
 import api from '../../services/api'
+import Logout from '../../Components/Logout/Logout';
+
 import Logo from '../../assets/pombo.jpg'
-import { FiPower, FiTrash2 } from 'react-icons/fi';
+import './styles.css';
 
 export default function Kitchen() {
   const history = useHistory();
-
-
-  function handleLogout() {
-    localStorage.clear();
-    history.push('/');
-  }
 
   function handleItemConclusion() {
     //Função pra alterar o estados do pedido para concluido
@@ -26,9 +22,7 @@ export default function Kitchen() {
             <img src={Logo} alt="LeColombe Royale Kitchen logo"></img>
             <span>LeColombe Royale kitchen</span>
           </div>
-          <button onClick={handleLogout} type="button">
-            <FiPower size={18} color="#e02041"></FiPower>
-          </button>
+          <Logout />
         </header>
 
         <h1>Pratos pendentes:</h1>

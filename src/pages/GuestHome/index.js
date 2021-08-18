@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import api from '../../services/api';
+import Logout from '../../Components/Logout/Logout';
 
-import { FiPower, FiLogOut } from 'react-icons/fi';
 import Logo from '../../assets/pombo.jpg';
 import './styles.css';
 
@@ -50,16 +50,6 @@ export default function Guesthome() {
     }
   }, [userId]);
 
-  async function handleLogout() {
-    try {
-      await AsyncStorage.clear();
-      alert('Logout efetuado com sucesso');
-      history.push('/');
-    } catch (err) {
-      alert('Logout', 'Houve um erro ao sair');
-    }
-  }
-
   async function navigateToServices() {
     history.push('/servicing');
   }
@@ -73,9 +63,7 @@ export default function Guesthome() {
             <img src={Logo} alt="LeColombe Royale Kitchen logo"></img>
             <span>Bem vindo, {username}!</span>
           </div>
-          <button onClick={handleLogout} type="button">
-            <FiLogOut size={18} color="#e02041"></FiLogOut>
-          </button>
+          <Logout />
         </header>
 
         <div className="Value">

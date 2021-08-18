@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import './styles.css';
+import { useHistory } from 'react-router-dom';
+
 import api from '../../services/api'
+import Logout from '../../Components/Logout/Logout';
+
 import Logo from '../../assets/pombo.jpg'
-import { FiPower, FiTrash2 } from 'react-icons/fi';
+import './styles.css';
 
 export default function Servicing() {
   const [services, setServices] = useState([]);
   const history = useHistory();
-
-  function handleLogout() {
-    localStorage.clear();
-    history.push('/');
-  }
 
   useEffect(() => {
     async function fetchServices() {
@@ -36,9 +33,7 @@ export default function Servicing() {
             <img src={Logo} alt="LeColombe Royale Kitchen logo"></img>
             <span>LeColombe Royale kitchen</span>
           </div>
-          <button onClick={handleLogout} type="button">
-            <FiPower size={18} color="#e02041"></FiPower>
-          </button>
+          <Logout />
         </header>
 
         <h1>Nossos pratos:</h1>
