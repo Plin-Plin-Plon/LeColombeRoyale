@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import Logo from '../../assets/PC.png';
 import api from '../../services/api'
 import './styles.css';
+import { cpfMask } from "masks-br";
 
 export default function Login() {
   const [quarto, setQuarto] = useState('');
@@ -34,16 +35,17 @@ export default function Login() {
         <form onSubmit={handleRegister}>
           <img src={Logo} alt="LeColombe Royale logo" />
           <input
-            type="text"
+            type="number"
             placeholder="Quarto"
             value={quarto}
             onChange={e => setQuarto(e.target.value)}
           />
           <input
             type="text"
-            placeholder="Hospede"
+            placeholder="CPF do hospede"
+            maxLength="14"
             value={hospede}
-            onChange={e => setHospede(e.target.value)}
+            onChange={e => setHospede(cpfMask(e.target.value))}
           />
           <input
             type="date"
@@ -58,7 +60,7 @@ export default function Login() {
             onChange={e => setDataout(e.target.value)}
           />
           <input
-            type="text"
+            type="number"
             placeholder="Valor da diária"
             value={value}
             onChange={e => setValue(e.target.value)}
