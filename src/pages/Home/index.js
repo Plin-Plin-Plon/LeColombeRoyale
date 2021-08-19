@@ -31,7 +31,7 @@ export default function Guesthome() {
 
     loadData('username', setUsername);
     loadData('user_id', setUserId);
-  })
+  }, []);
 
   useEffect(() => {
     if (userId && loading) {
