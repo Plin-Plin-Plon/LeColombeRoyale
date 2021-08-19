@@ -6,10 +6,10 @@ import api from '../../services/api';
 import Logout from '../../Components/Logout/Logout';
 import RateButton from '../../Components/RateButton/RateButton';
 
-import Logo from '../../assets/pombo.jpg';
+import Logo from '../../assets/PC.png';
 import './styles.css';
 
-export default function Guesthome() {
+export default function Home() {
   const [username, setUsername] = useState("");
   const [userId, setUserId] = useState("");
   const [roomNumber, setRoomNumber] = useState("");

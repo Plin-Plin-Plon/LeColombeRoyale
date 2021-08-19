@@ -2,13 +2,13 @@ import React from 'react'
 import { Router, Route, Switch } from 'react-router-dom';
 import history from "./history";
 
-import Login from './pages/Login'
-import Register from './pages/Register'
-import Kitchen from './pages/Kitchen'
-import Navbar from './Components/Navbar/Navbar'
-import Acommodation from './pages/Accommodation'
-import Servicing from './pages/Servicing'
-import Home from './pages/Home'
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Kitchen from './pages/Kitchen';
+import Navbar from './Components/Navbar/Navbar';
+import Acommodation from './pages/Accommodation';
+import Servicing from './pages/Servicing';
+import Home from './pages/Home';
 
 export default function Routes() {
   return (

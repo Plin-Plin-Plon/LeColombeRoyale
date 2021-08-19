@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import Logo from '../../assets/pombo.jpg';
+import Logo from '../../assets/PC.png';
 import api from '../../services/api'
 import './styles.css';
 

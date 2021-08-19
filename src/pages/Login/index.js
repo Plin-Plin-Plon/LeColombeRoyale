@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import Logo from '../../assets/pombo.jpg';
+import Logo from '../../assets/PC.png';
 import history from "../../history";
 import api from '../../services/api'
 import './styles.css';

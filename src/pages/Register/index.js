@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 import { cpfMask, celularMask, telefoneMask, cepMask } from "masks-br";
 import api from '../../services/api'
-import Logo from '../../assets/pombo.jpg'
+import Logo from '../../assets/PC.png';
 import Switch from "react-switch";
 import history from "../../history";
 
