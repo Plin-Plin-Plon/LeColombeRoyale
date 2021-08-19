@@ -4,7 +4,7 @@ import api from '../../services/api'
 import Logout from '../../Components/Logout/Logout';
 import history from "../../history";
 
-import Logo from '../../assets/pombo.jpg'
+import KitchenLogo from '../../assets/ratatuile.png'
 import './styles.css';
 
 export default function Servicing() {
@@ -30,7 +30,7 @@ export default function Servicing() {
       <div className="container">
         <header>
           <div>
-            <img src={Logo} alt="LeColombe Royale Kitchen logo"></img>
+            <img src={KitchenLogo} alt="LeColombe Royale Kitchen logo"></img>
             <span>LeColombe Royale kitchen</span>
           </div>
           <Logout />
