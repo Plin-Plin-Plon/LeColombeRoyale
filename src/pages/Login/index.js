@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -11,11 +11,27 @@ export default function Login() {
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
 
+  useEffect(() => {
+    async function checkLoggedUser() {
+      try {
+        const logged = await AsyncStorage.getItem('user_id');
+
+        if (logged) {
+          history.push("/home");
+        }
+      } catch (err) {
+        return null;
+      }
+    }
+
+    checkLoggedUser();
+  }, [])
+
   const storeData = async (key, value) => {
     try {
       await AsyncStorage.setItem(key, value);
     } catch (e) {
-      alert("Login", "Houve um erro no login");
+      alert("Houve um erro no login");
     }
   }
 
@@ -33,9 +49,9 @@ export default function Login() {
         await storeData('token', res.data.token);
         await storeData('username', usuario);
         await storeData('user_id', res.data.idPessoa);
-        
+
         alert('Sessão iniciada');
-        history.push('/accomodation');
+        history.push('/home');
       }).catch(async err => {
         await AsyncStorage.clear();
         alert('Credenciais inválidas');
