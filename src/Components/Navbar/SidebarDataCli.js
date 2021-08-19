@@ -3,26 +3,6 @@ import * as AiIcons from 'react-icons/ai';
 import {FiCoffee, FiHome, FiLogIn, FiShoppingCart} from "react-icons/fi";
 
 export const SidebarData = [
-  {
-    title: 'Registro',
-    path: '/register',
-    icon: <AiIcons.AiOutlineAudit />,
-    cName: 'nav-text'
-  },
-
-  {
-    title: 'Cozinha',
-    path: '/kitchen',
-    icon: <FiCoffee/>,
-    cName: 'nav-text'
-  },
-
-  {
-    title: 'Logar',
-    path: '/',
-    icon: <FiLogIn />,
-    cName: 'nav-text'
-  },
 
   {
     title: 'Cadastrar hospedagem',

@@ -10,7 +10,6 @@ export default function Login() {
   const [hospede, setHospede] = useState('');
   const [datain, setDatain] = useState('');
   const [dataout, setDataout] = useState('');
-  const [value, setValue] = useState('');
 
   const history = useHistory();
 
@@ -22,7 +21,6 @@ export default function Login() {
       hospede,
       datain,
       dataout,
-      value
     };
 
     history.push('/home');
@@ -58,12 +56,6 @@ export default function Login() {
             placeholder="Data da saída"
             value={dataout}
             onChange={e => setDataout(e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Valor da diária"
-            value={value}
-            onChange={e => setValue(e.target.value)}
           />
           <button type="submit">Cadastrar Hospedagem</button>
         </form>

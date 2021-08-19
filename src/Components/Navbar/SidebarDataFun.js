@@ -18,13 +18,6 @@ export const SidebarData = [
   },
 
   {
-    title: 'Logar',
-    path: '/',
-    icon: <FiLogIn />,
-    cName: 'nav-text'
-  },
-
-  {
     title: 'Cadastrar hospedagem',
     path: '/accomodation',
     icon: <FiHome />,
@@ -37,12 +30,5 @@ export const SidebarData = [
     icon: <FiShoppingCart />,
     cName: 'nav-text'
   },
-
-  {
-    title: 'Minha hospedagem',
-    path: '/home',
-    icon: <AiIcons.AiFillHome />,
-    cName: 'nav-text'
-  }
 
 ];
