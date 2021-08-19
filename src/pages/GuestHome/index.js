@@ -98,6 +98,13 @@ export default function Guesthome() {
             </div>
           }
         </ul>
+        <h1>Recomendamos para você: </h1>
+        
+        <div className="menuButton">
+          <button onClick={navigateToServices} type="button">
+            Fazer um pedido
+          </button>
+        </div>
       </div>
     </div>
   );

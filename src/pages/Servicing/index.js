@@ -9,6 +9,7 @@ import './styles.css';
 
 export default function Servicing() {
   const [services, setServices] = useState([]);
+  const [codigo, setCodigo] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -35,7 +36,15 @@ export default function Servicing() {
           </div>
           <Logout />
         </header>
-
+        <form>
+          <input
+          type="text"
+          placeholder="Código do prato"
+          value={codigo}
+          onChange={e => setCodigo(e.target.value)}
+          />
+          <button>Solicitar prato</button>
+        </form>
         <h1>Nossos pratos:</h1>
         <div className="listContainer">
           <ul>
