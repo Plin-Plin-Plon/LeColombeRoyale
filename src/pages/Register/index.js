@@ -70,7 +70,7 @@ export default function Register() {
         .post(toggle ? "acesso/register?func=1" : "acesso/register", data)
         .then(res => {
           alert('Cadastrado com sucesso');
-          history.push('/login');
+          history.push('/');
         }).catch(err => {
           alert('Erro no cadastro, tente novamente');
           console.log(err);
