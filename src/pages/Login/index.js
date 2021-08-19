@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import Logo from '../../assets/PC.png';
 import history from "../../history";
 import api from '../../services/api'
+
+import Logo from '../../assets/PC.png';
 import './styles.css';
 
 export default function Login() {
@@ -49,9 +50,23 @@ export default function Login() {
         await storeData('token', res.data.token);
         await storeData('username', usuario);
         await storeData('user_id', res.data.idPessoa);
-
         alert('Sessão iniciada');
-        history.push('/accomodation');
+
+        await api
+          .get(`hospedagem/index?idHospede=${res.data.idPessoa}`)
+          .then(async res => {
+            try {
+              await AsyncStorage.setItem('accomodation_id', res.data.idHospedagem);
+              await AsyncStorage.setItem('room', res.data.quarto.numero);
+              history.push("/home");
+            } catch (err) {
+              await AsyncStorage.removeItem('accomodation_id');
+              await AsyncStorage.removeItem('room');
+              history.push('/accomodation');
+            }
+          }).catch(async err => {
+            history.push('/accomodation');
+          })
       }).catch(async err => {
         await AsyncStorage.clear();
         alert('Credenciais inválidas');
