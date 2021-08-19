@@ -51,7 +51,7 @@ export default function Login() {
         await storeData('user_id', res.data.idPessoa);
 
         alert('Sessão iniciada');
-        history.push('/home');
+        history.push('/accomodation');
       }).catch(async err => {
         await AsyncStorage.clear();
         alert('Credenciais inválidas');

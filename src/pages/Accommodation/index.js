@@ -24,6 +24,8 @@ export default function Login() {
       value
     };
 
+    history.push('/home');
+
   }
 
   return (
@@ -44,13 +46,13 @@ export default function Login() {
             onChange={e => setHospede(e.target.value)}
           />
           <input
-            type="text"
+            type="date"
             placeholder="Data de entrada"
             value={datain}
             onChange={e => setDatain(e.target.value)}
           />
           <input
-            type="text"
+            type="date"
             placeholder="Data da saída"
             value={dataout}
             onChange={e => setDataout(e.target.value)}
