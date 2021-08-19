@@ -1,5 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import history from '../history';
 
 const api = () => {
   const defaultOptions = {
@@ -23,7 +25,15 @@ const api = () => {
 
   instance.interceptors.request.use(async config => {
     const token = await getToken();
-    config.headers.Authorization = token ? `Bearer ${token}` : '';
+
+    if (token && jwt_decode(token).exp < Date.now() / 1000) {
+      await AsyncStorage.clear();
+      alert('Sua sessão expirou, por favor entre novamente com sua conta');
+      history.push("/");
+    } else {
+      config.headers.Authorization = token ? `Bearer ${token}` : '';
+    }
+
     return config;
   });
 
