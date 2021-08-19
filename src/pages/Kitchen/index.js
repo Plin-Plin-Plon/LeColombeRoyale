@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import api from '../../services/api'
-import history from "../../history";
 import Logout from '../../Components/Logout/Logout';
 
-import Logo from '../../assets/pombo.jpg'
+import KitchenLogo from '../../assets/ratatuile.png';
 import './styles.css';
 
 export default function Kitchen() {
@@ -52,7 +50,7 @@ export default function Kitchen() {
       <div className="container">
         <header>
           <div>
-            <img src={Logo} alt="LeColombe Royale Kitchen logo"></img>
+            <img src={KitchenLogo} alt="LeColombe Royale Kitchen logo"></img>
             <span>LeColombe Royale kitchen</span>
           </div>
           <Logout />
@@ -71,7 +69,7 @@ export default function Kitchen() {
                   <p>Código do prato: {order.servico.idServico}</p>
                   <p>{order.servico.descricao}</p>
                   <strong>Entregar no quarto: {order.quarto.numero}</strong>
-                  <button onClick={() => {handleItemConclusion(order)}} type="button">
+                  <button onClick={() => { handleItemConclusion(order) }} type="button">
                     Concluido
                   </button>
                 </li>
