@@ -4,7 +4,7 @@ import Logo from '../../assets/pombo.jpg';
 import api from '../../services/api'
 import './styles.css';
 
-export default function Logon() {
+export default function Login() {
   const [quarto, setQuarto] = useState('');
   const [hospede, setHospede] = useState('');
   const [datain, setDatain] = useState('');
