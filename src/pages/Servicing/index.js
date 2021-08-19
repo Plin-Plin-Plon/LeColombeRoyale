@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api'
 import Logout from '../../Components/Logout/Logout';
+import history from "../../history";
 
 import Logo from '../../assets/pombo.jpg'
 import './styles.css';
@@ -10,7 +10,6 @@ import './styles.css';
 export default function Servicing() {
   const [services, setServices] = useState([]);
   const [codigo, setCodigo] = useState("");
-  const history = useHistory();
 
   useEffect(() => {
     async function fetchServices() {

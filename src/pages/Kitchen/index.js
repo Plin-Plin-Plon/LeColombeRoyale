@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import api from '../../services/api'
+import history from "../../history";
 import Logout from '../../Components/Logout/Logout';
 
 import Logo from '../../assets/pombo.jpg'
@@ -10,7 +11,6 @@ import './styles.css';
 export default function Kitchen() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  const history = useHistory();
 
   useEffect(() => {
     if (loading) {

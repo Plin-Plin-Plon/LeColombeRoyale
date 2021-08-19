@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Logo from '../../assets/pombo.jpg';
+import history from "../../history";
 import api from '../../services/api'
 import './styles.css';
 
 export default function Login() {
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
-
-  const history = useHistory();
 
   const storeData = async (key, value) => {
     try {
@@ -63,7 +62,7 @@ export default function Login() {
           />
           <button type="submit">Entrar</button>
           <hr />
-          <Link to="/">Criar conta grátis</Link>
+          <Link to="/register">Criar conta grátis</Link>
         </form>
       </div>
     </div>

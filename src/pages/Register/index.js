@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './styles.css';
 import { cpfMask, celularMask, telefoneMask, cepMask } from "masks-br";
 import api from '../../services/api'
 import Logo from '../../assets/pombo.jpg'
 import Switch from "react-switch";
-
+import history from "../../history";
 
 export default function Register() {
-  const history = useHistory();
   const [nome, setNome] = useState('');
   const [cpf, setCpf] = useState('');
 
@@ -259,7 +258,7 @@ export default function Register() {
           )}
 
           <hr />
-          <Link to="/login">Fazer login</Link>
+          <Link to="/">Fazer login</Link>
         </form>
       </div>
     </div>

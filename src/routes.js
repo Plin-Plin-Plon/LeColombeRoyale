@@ -1,5 +1,6 @@
 import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
+import history from "./history";
 
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -11,16 +12,16 @@ import GuestHome from './pages/GuestHome'
 
 export default function routes() {
   return (
-    <BrowserRouter>
-    <Navbar/>
+    <Router history={history}>
+      <Navbar />
       <switch>
-        <Route path="/login" component={Login} />
-        <Route path="/" exact component={Register} />
-        <Route path="/kitchen" exact component={Kitchen} />
-        <Route path="/accomodation" exact component={Acommodation} />
-        <Route path="/servicing" exact component={Servicing} />
-        <Route path="/guesthome" exact component={GuestHome} />
+        <Route exact path="/" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/kitchen" component={Kitchen} />
+        <Route exact path="/accomodation" component={Acommodation} />
+        <Route exact path="/servicing" component={Servicing} />
+        <Route exact path="/guesthome" component={GuestHome} />
       </switch>
-    </BrowserRouter>
+    </Router>
   );
 }

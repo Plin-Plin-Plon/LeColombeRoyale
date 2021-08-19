@@ -4,7 +4,7 @@ import * as AiIcons from 'react-icons/ai';
 export const SidebarData = [
   {
     title: 'Registro',
-    path: '/',
+    path: '/register',
     icon: <AiIcons.AiFillHome />,
     cName: 'nav-text'
   },
@@ -18,7 +18,7 @@ export const SidebarData = [
 
   {
     title: 'Logar',
-    path: '/login',
+    path: '/',
     icon: <AiIcons.AiFillHome />,
     cName: 'nav-text'
   },
