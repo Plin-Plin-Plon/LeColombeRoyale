@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import history from "../../history";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import api from '../../services/api';
 import Logout from '../../Components/Logout/Logout';
+import RateButton from '../../Components/RateButton/RateButton';
 
 import Logo from '../../assets/pombo.jpg';
 import './styles.css';
@@ -14,7 +15,7 @@ export default function Guesthome() {
   const [roomNumber, setRoomNumber] = useState("");
   const [totalValue, setTotalValue] = useState("");
   const [orders, setOrders] = useState([]);
-  const history = useHistory();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadData(key, setData) {
@@ -33,14 +34,15 @@ export default function Guesthome() {
   })
 
   useEffect(() => {
-    if (userId) {
+    if (userId && loading) {
       async function fetchAccomodation() {
         await api
           .get(`hospedagem/index?idHospede=${userId}`)
           .then(async res => {
+            setLoading(false);
             setRoomNumber(res.data.quarto.numero);
             setTotalValue(res.data.valorTotal);
-            setOrders(res.data.pedidos);
+            setOrders(await reduceConcludedOrders(res.data.pedidos));
           }).catch(async err => {
             console.log(err);
           })
@@ -48,16 +50,24 @@ export default function Guesthome() {
 
       fetchAccomodation();
     }
-  }, [userId]);
+  }, [userId, loading]);
 
   async function navigateToServices() {
     history.push('/servicing');
   }
 
+  async function reduceConcludedOrders(orders) {
+    return orders.reduce((concludedOrders, currentOrder) => {
+      if (currentOrder.concluido) {
+        concludedOrders.push(currentOrder);
+      }
+      return concludedOrders;
+    }, []);
+  }
+
   return (
     <div className="body">
       <div className="container">
-
         <header>
           <div>
             <img src={Logo} alt="LeColombe Royale Kitchen logo"></img>
@@ -81,15 +91,16 @@ export default function Guesthome() {
         <h1>Seus pedidos:</h1>
         <ul>
           {orders.length !== 0 ?
-            orders.map(orders => (
-              <li key={orders.idPedido}>
+            orders.map(order => (
+              <li key={order.idPedido}>
                 <div className="title">
-                  <strong>{orders.servico.nome}</strong>
+                  <strong>{order.servico.nome}</strong>
                 </div>
-                <p>{orders.servico.descricao}</p>
-                <strong>Preço: R${orders.servico.preco}</strong>
-                <strong>Avaliação: {orders.avaliacaoServico ? orders.avaliacaoServico : "não avaliado"}</strong>
-                <p>Código: {orders.idPedido}</p>
+                <p>{order.servico.descricao}</p>
+                <strong>Preço: R${order.servico.preco}</strong>
+                <p>Código: {order.idPedido}</p>
+                <strong>Avaliação do pedido: {order.avaliacaoServico ? order.avaliacaoServico : "não avaliado"}</strong>
+                {!order.avaliacaoServico ? <RateButton value={order.avaliacaoServico} idPedido={order.idPedido} /> : null}
               </li>
             ))
             :
@@ -99,7 +110,7 @@ export default function Guesthome() {
           }
         </ul>
         <h1>Recomendamos para você: </h1>
-        
+
         <div className="menuButton">
           <button onClick={navigateToServices} type="button">
             Fazer um pedido
