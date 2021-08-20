@@ -113,11 +113,13 @@ export default function Register() {
         <form onSubmit={handleRegister}>
           <img src={Logo} alt="LeColombe Royale logo" />
 
-          <div className="switch">
-            <span>Cadastrar funcionário </span>
-            <Switch onChange={handleSwitch} checked={toggle} />
-          </div>
-
+          {logged === 3 ?
+            <div className="switch">
+              <span>Cadastrar funcionário </span>
+              <Switch onChange={handleSwitch} checked={toggle} />
+            </div>
+            : null}
+          
           <ul>
             <li>
               <input
