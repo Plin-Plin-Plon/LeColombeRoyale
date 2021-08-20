@@ -25,6 +25,13 @@ export const SidebarData = [
   },
 
   {
+    title: 'Cadastrar quarto',
+    path: '/createroom',
+    icon: <AiIcons.AiFillHome />,
+    cName: 'nav-text'
+  },
+
+  {
     title: 'Cadastrar hospedagem',
     path: '/accomodation',
     icon: <FiHome />,
@@ -43,6 +50,6 @@ export const SidebarData = [
     path: '/home',
     icon: <AiIcons.AiFillHome />,
     cName: 'nav-text'
-  }
+  },
 
 ];

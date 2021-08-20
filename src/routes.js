@@ -8,6 +8,7 @@ import Kitchen from './pages/Kitchen';
 import Acommodation from './pages/Accommodation';
 import Servicing from './pages/Servicing';
 import Home from './pages/Home';
+import Room from './pages/CreateRoom'
 
 export default function Routes() {
   return (
@@ -19,6 +20,7 @@ export default function Routes() {
         <Route path="/accomodation" component={Acommodation} />
         <Route path="/servicing" component={Servicing} />
         <Route path="/home" component={Home} />
+        <Route path="/createroom" component={Room} />
       </Switch>
     </Router>
   );
