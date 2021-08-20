@@ -9,7 +9,7 @@ import Spinner from "react-spinners/PulseLoader";
 
 import Navbar from '../../Components/Navbar/Navbar';
 
-import './styless.css';
+import './styles.css';
 
 export default function MyAcoount() {
   const [loading, setLoading] = useState(true);
@@ -58,20 +58,26 @@ export default function MyAcoount() {
         </header>
         {!loading ? (
           <>
-            <strong src="./styless.css">Nome:</strong>
+            <strong>Nome:</strong>
             <p>{hospede.nome}</p>
             <strong>CPF: </strong>
             <p>{hospede.cpf}</p>
             <strong>E-mail: </strong>
-            <p>{hospede.email}</p>
+            <p>{hospede.contato.email}</p>
             <strong>Cidade: </strong>
-            <p>{hospede.cidade}</p>
+            {hospede.endereco.map(enderecos => (
+                    <p>{enderecos.cidade}</p>
+                ))}
             <strong>Bairro: </strong>
-            <p>{hospede.bairro}</p>
+            {hospede.endereco.map(enderecos => (
+                    <p>{enderecos.bairro}</p>
+                ))}
             <strong>Logradouro: </strong>
-            <p>{hospede.logradouro}</p>
+            {hospede.endereco.map(enderecos => (
+                    <p>{enderecos.logradouro}</p>
+                ))}
             <strong>Celular: </strong>
-            <p>{hospede.celular}</p>
+            <p>{hospede.contato.telCelular}</p>
           </>
         ) : (
           <div>

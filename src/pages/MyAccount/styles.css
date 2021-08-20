@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url(../../assets/fonts/Montserrat-Regular.otf) format('truetype');
+  }
+
 .body {
     background: #eee;
     height: 100%;
@@ -21,6 +26,7 @@
 }
 
 .container header span {
+    font-family: 'Montserrat';
     font-size: 25px;
     margin-left: 24px;
 }
@@ -28,6 +34,13 @@
 .container header img {
     padding-top: 10px;
     height: 64px;
+}
+
+.container ul li strong {
+    font-family: 'Montserrat';
+    display: block;
+    margin-bottom: 16px;
+    color: #41414d;
 }
 
 .container header a {
@@ -51,5 +64,6 @@
 }
 
 .container p{
+    font-family: 'Montserrat';
     padding-bottom: 20px;
 }
