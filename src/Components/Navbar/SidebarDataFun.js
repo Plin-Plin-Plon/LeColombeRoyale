@@ -2,7 +2,7 @@ import React from 'react';
 import * as AiIcons from 'react-icons/ai';
 import {FiCoffee, FiHome, FiLogIn, FiShoppingCart} from "react-icons/fi";
 
-export const SidebarData = [
+export const SidebarDataFun = [
   {
     title: 'Registro',
     path: '/register',

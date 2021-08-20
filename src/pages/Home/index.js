@@ -9,6 +9,8 @@ import RateButton from '../../Components/RateButton/RateButton';
 import Logo from '../../assets/PC.png';
 import './styles.css';
 
+import Navbar from '../../Components/Navbar/Navbar';
+
 export default function Home() {
   const [username, setUsername] = useState("");
   const [roomNumber, setRoomNumber] = useState(null);
@@ -77,6 +79,7 @@ export default function Home() {
   return (
     <div className="body">
       <div className="container">
+        <Navbar/>
         <header>
           <div>
             <img src={Logo} alt="LeColombe Royale Kitchen logo"></img>

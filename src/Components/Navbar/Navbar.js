@@ -1,18 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 import { Link } from 'react-router-dom'
-import { FiSidebar } from 'react-icons/fi';
 import { SidebarData } from './SidebarData'
+import { SidebarDataFun } from './SidebarDataFun';
+import { SidebarDataCli } from './SidebarDataCli';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import jwt_decode from 'jwt-decode';
 import './Navbar.css';
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false)
+  const [loading, setLoading] = useState(true);
+  const [Data, setData] = useState([]);
 
   const showSidebar = () => {
     setSidebar(!sidebar)
   }
+
+  const getToken = async () => {
+    try {
+      const value = await AsyncStorage.getItem('token');
+      return value;
+    } catch (err) {
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    if (loading) {
+      try{
+        const token = getToken();
+
+      if (jwt_decode(token).roles === "ROLE_USER") {
+        setData(SidebarDataCli);
+      }
+      else if (jwt_decode(token).roles === "ROLE_MOD") {
+        setData(SidebarDataFun);
+      }
+      else {
+        setData(SidebarData);
+      }
+      setLoading(false);
+    }
+    catch(err){
+      return null;
+    }
+  }
+  }, [loading])
 
   return (
     <>
@@ -30,7 +66,7 @@ function Navbar() {
                 <AiIcons.AiOutlineClose />
               </Link>
             </li>
-            {SidebarData.map((item, index) => {
+            {Data.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>
                   <Link to={item.path}>
@@ -42,7 +78,7 @@ function Navbar() {
             })}
           </ul>
         </nav>
-        
+
       </IconContext.Provider>
     </>
   )

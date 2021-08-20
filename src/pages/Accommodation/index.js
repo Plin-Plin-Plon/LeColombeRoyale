@@ -6,6 +6,8 @@ import Logo from '../../assets/PC.png';
 import history from "../../history";
 import api from '../../services/api'
 
+import Navbar from '../../Components/Navbar/Navbar';
+
 import './styles.css';
 
 export default function Login() {
@@ -74,6 +76,7 @@ export default function Login() {
   return (
     <div className='body'>
       <div className='Container'>
+        <Navbar/>
         <form onSubmit={handleRegister}>
           <img src={Logo} alt="LeColombe Royale logo" />
           <select placeholder="Quarto" onChange={e => setQuartoIndex(e.target.value)}>

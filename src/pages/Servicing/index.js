@@ -7,6 +7,8 @@ import Logout from '../../Components/Logout/Logout';
 import KitchenLogo from '../../assets/ratatuile.png'
 import './styles.css';
 
+import Navbar from '../../Components/Navbar/Navbar';
+
 export default function Servicing() {
   const [loading, setLoading] = useState(true);
   const [services, setServices] = useState([]);
@@ -68,6 +70,7 @@ export default function Servicing() {
   return (
     <div className="body">
       <div className="container">
+      <Navbar/>
         <header>
           <div>
             <img src={KitchenLogo} alt="LeColombe Royale Kitchen logo"></img>
