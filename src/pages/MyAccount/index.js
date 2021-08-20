@@ -9,7 +9,7 @@ import Spinner from "react-spinners/PulseLoader";
 
 import Navbar from '../../Components/Navbar/Navbar';
 
-import './styless.css';
+import './styles.css';
 
 export default function MyAcoount() {
   const [loading, setLoading] = useState(true);
@@ -58,7 +58,7 @@ export default function MyAcoount() {
         </header>
         {!loading ? (
           <>
-            <strong src="./styless.css">Nome:</strong>
+            <strong>Nome:</strong>
             <p>{hospede.nome}</p>
             <strong>CPF: </strong>
             <p>{hospede.cpf}</p>
