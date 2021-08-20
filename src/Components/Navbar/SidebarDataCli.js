@@ -23,6 +23,13 @@ export const SidebarDataCli = [
     path: '/home',
     icon: <AiIcons.AiFillHome />,
     cName: 'nav-text'
+  },
+
+  {
+    title: 'Detalhes da conta',
+    path: '/details',
+    icon: <AiIcons.AiOutlineAudit />,
+    cName: 'nav-text'
   }
 
 ];
