@@ -63,15 +63,21 @@ export default function MyAcoount() {
             <strong>CPF: </strong>
             <p>{hospede.cpf}</p>
             <strong>E-mail: </strong>
-            <p>{hospede.email}</p>
+            <p>{hospede.contato.email}</p>
             <strong>Cidade: </strong>
-            <p>{hospede.cidade}</p>
+            {hospede.endereco.map(enderecos => (
+                    <p>{enderecos.cidade}</p>
+                ))}
             <strong>Bairro: </strong>
-            <p>{hospede.bairro}</p>
+            {hospede.endereco.map(enderecos => (
+                    <p>{enderecos.bairro}</p>
+                ))}
             <strong>Logradouro: </strong>
-            <p>{hospede.logradouro}</p>
+            {hospede.endereco.map(enderecos => (
+                    <p>{enderecos.logradouro}</p>
+                ))}
             <strong>Celular: </strong>
-            <p>{hospede.celular}</p>
+            <p>{hospede.contato.telCelular}</p>
           </>
         ) : (
           <div>
