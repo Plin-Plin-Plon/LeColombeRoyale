@@ -16,12 +16,23 @@ export default function CreateRoom() {
     e.preventDefault();
 
     const data = {
-      number,
-      roomType,
-      value
+      numero: number,
+      tipo: roomType,
+      valor: value,
+      vago: true
     };
 
-    
+    await api
+      .post("quarto/create", data)
+      .then(res => {
+        if (res.data.message) {
+          alert(res.data.message);  
+        } else {
+          alert('Quarto criado com sucesso');
+        }
+      }).catch(err => {
+        alert('Houve um erro na criação do quarto');
+      })
   }
 
   return (
@@ -48,7 +59,7 @@ export default function CreateRoom() {
             value={value}
             onChange={e => setValue(e.target.value)}
           />
-          <button type="submit">Entrar</button>
+          <button type="submit">Cadastrar quarto</button>
         </form>
       </div>
     </div>
