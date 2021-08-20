@@ -19,7 +19,7 @@ export const SidebarDataFun = [
 
   {
     title: 'Cadastrar hospedagem',
-    path: '/accomodation',
+    path: '/accommodation',
     icon: <FiHome />,
     cName: 'nav-text'
   },

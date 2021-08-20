@@ -33,7 +33,7 @@ export const SidebarData = [
 
   {
     title: 'Cadastrar hospedagem',
-    path: '/accomodation',
+    path: '/accommodation',
     icon: <FiHome />,
     cName: 'nav-text'
   },

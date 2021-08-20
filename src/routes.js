@@ -5,12 +5,12 @@ import history from "./history";
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Kitchen from './pages/Kitchen';
-import Acommodation from './pages/Accommodation';
+import Accommodation from './pages/Accommodation';
 import Servicing from './pages/Servicing';
 import Home from './pages/Home';
 import Room from './pages/CreateRoom'
 import Details from './pages/MyAccount'
-import Finish from './pages/FinishAccomodation'
+import Finish from './pages/FinishAccommodation'
 
 export default function Routes() {
   return (
@@ -19,7 +19,7 @@ export default function Routes() {
         <Route path="/" exact component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/kitchen" component={Kitchen} />
-        <Route path="/accomodation" component={Acommodation} />
+        <Route path="/accommodation" component={Accommodation} />
         <Route path="/servicing" component={Servicing} />
         <Route path="/home" component={Home} />
         <Route path="/createroom" component={Room} />

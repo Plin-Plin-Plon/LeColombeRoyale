@@ -10,7 +10,7 @@ import Navbar from '../../Components/Navbar/Navbar';
 
 import './styles.css';
 
-export default function Login() {
+export default function Accommodation() {
   const [quartoIndex, setQuartoIndex] = useState(0);
   const [rooms, setRooms] = useState([]);
   const [hospede, setHospede] = useState('');
@@ -63,11 +63,11 @@ export default function Login() {
     await api
       .post("hospedagem/create", data)
       .then(async res => {
-        await AsyncStorage.setItem('accomodation_id', res.data.idHospedagem);
+        await AsyncStorage.setItem('accommodation_id', res.data.idHospedagem);
         await AsyncStorage.setItem('room', res.data.quarto.numero);
         history.push("/home");
       }).catch(async err => {
-        await AsyncStorage.removeItem('accomodation_id');
+        await AsyncStorage.removeItem('accommodation_id');
         await AsyncStorage.removeItem('room');
         alert('Houve um erro no cadastro da hospedagem');
       })

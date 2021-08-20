@@ -5,7 +5,7 @@ import { cpfMask } from "masks-br";
 import Logo from '../../assets/PC.png';
 import './styles.css';
 
-export default function FinishAccomodation() {
+export default function FinishAccommodation() {
   const [CPF, setCPF] = useState('');
 
   async function handleFinish(e){

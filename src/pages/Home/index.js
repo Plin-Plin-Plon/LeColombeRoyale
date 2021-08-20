@@ -46,21 +46,21 @@ export default function Home() {
 
   useEffect(() => {
     if (loading) {
-      async function fetchAccomodation() {
+      async function fetchAccommodation() {
         const userId = await syncLoadData('user_id');
 
         await api
           .get(`hospedagem/index?idHospede=${userId}`)
           .then(async res => {
             try {
-              await AsyncStorage.setItem('accomodation_id', res.data.idHospedagem);
+              await AsyncStorage.setItem('accommodation_id', res.data.idHospedagem);
               await AsyncStorage.setItem('room', res.data.quarto.numero);
               setRoomNumber(res.data.quarto.numero);
               setTotalValue(res.data.valorTotal);
               setOrders(res.data.pedidos);
             } catch (err) {
               setRoomNumber(null);
-              await AsyncStorage.removeItem('accomodation_id');
+              await AsyncStorage.removeItem('accommodation_id');
               await AsyncStorage.removeItem('room');
             }
 
@@ -82,7 +82,7 @@ export default function Home() {
           })
       }
 
-      fetchAccomodation();
+      fetchAccommodation();
       fetchRecommendedServices();
     }
   }, [loading]);

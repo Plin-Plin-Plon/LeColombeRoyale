@@ -59,16 +59,16 @@ export default function Login() {
             .get(`hospedagem/index?idHospede=${res.data.idPessoa}`)
             .then(async res => {
               try {
-                await AsyncStorage.setItem('accomodation_id', res.data.idHospedagem);
+                await AsyncStorage.setItem('accommodation_id', res.data.idHospedagem);
                 await AsyncStorage.setItem('room', res.data.quarto.numero);
                 history.push("/home");
               } catch (err) {
-                await AsyncStorage.removeItem('accomodation_id');
+                await AsyncStorage.removeItem('accommodation_id');
                 await AsyncStorage.removeItem('room');
-                history.push('/accomodation');
+                history.push('/accommodation');
               }
             }).catch(async err => {
-              history.push('/accomodation');
+              history.push('/accommodation');
             })
         }
       }).catch(async err => {
