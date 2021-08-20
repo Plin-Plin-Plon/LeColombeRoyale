@@ -75,8 +75,8 @@ export default function Login() {
 
   return (
     <div className='body'>
+      <Navbar/>
       <div className='Container'>
-        <Navbar/>
         <form onSubmit={handleRegister}>
           <img src={Logo} alt="LeColombe Royale logo" />
           <select placeholder="Quarto" onChange={e => setQuartoIndex(e.target.value)}>

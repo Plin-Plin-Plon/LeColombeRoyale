@@ -78,8 +78,8 @@ export default function Home() {
 
   return (
     <div className="body">
+      <Navbar/>
       <div className="container">
-        <Navbar/>
         <header>
           <div>
             <img src={Logo} alt="LeColombe Royale Kitchen logo"></img>

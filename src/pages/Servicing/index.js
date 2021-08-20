@@ -69,8 +69,8 @@ export default function Servicing() {
 
   return (
     <div className="body">
-      <div className="container">
       <Navbar/>
+      <div className="container">
         <header>
           <div>
             <img src={KitchenLogo} alt="LeColombe Royale Kitchen logo"></img>

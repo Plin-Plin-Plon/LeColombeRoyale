@@ -49,8 +49,8 @@ export default function Kitchen() {
 
   return (
     <div className="body">
+      <Navbar/>
       <div className="container">
-        <Navbar/>
         <header>
           <div>
             <img src={KitchenLogo} alt="LeColombe Royale Kitchen logo"></img>
