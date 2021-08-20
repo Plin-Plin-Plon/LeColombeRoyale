@@ -1,6 +1,6 @@
 import React from 'react';
 import * as AiIcons from 'react-icons/ai';
-import { FiCoffee, FiHome, FiShoppingCart } from "react-icons/fi";
+import { FiCoffee, FiHome, FiShoppingCart, FiUserMinus } from "react-icons/fi";
 
 export const SidebarDataFun = [
   {
@@ -28,6 +28,13 @@ export const SidebarDataFun = [
     title: 'Serviços',
     path: '/servicing',
     icon: <FiShoppingCart />,
+    cName: 'nav-text'
+  },
+
+  {
+    title: 'Finalizar estadia',
+    path: '/finish',
+    icon: <FiUserMinus />,
     cName: 'nav-text'
   },
 

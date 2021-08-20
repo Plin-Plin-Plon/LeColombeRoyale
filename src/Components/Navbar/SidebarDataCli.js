@@ -1,6 +1,6 @@
 import React from 'react';
 import * as AiIcons from 'react-icons/ai';
-import { FiHome, FiShoppingCart } from "react-icons/fi";
+import { FiHome, FiShoppingCart, FiUserMinus } from "react-icons/fi";
 
 export const SidebarDataCli = [
 
@@ -29,6 +29,13 @@ export const SidebarDataCli = [
     title: 'Detalhes da conta',
     path: '/details',
     icon: <AiIcons.AiOutlineAudit />,
+    cName: 'nav-text'
+  },
+
+  {
+    title: 'Finalizar estadia',
+    path: '/finish',
+    icon: <FiUserMinus />,
     cName: 'nav-text'
   }
 

@@ -10,6 +10,7 @@ import Servicing from './pages/Servicing';
 import Home from './pages/Home';
 import Room from './pages/CreateRoom'
 import Details from './pages/MyAccount'
+import Finish from './pages/FinishAccomodation'
 
 export default function Routes() {
   return (
@@ -23,6 +24,7 @@ export default function Routes() {
         <Route path="/home" component={Home} />
         <Route path="/createroom" component={Room} />
         <Route path="/details" component={Details} />
+        <Route path="/finish" component={Finish} />
       </Switch>
     </Router>
   );
