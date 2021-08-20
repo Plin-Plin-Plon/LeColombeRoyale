@@ -52,21 +52,25 @@ export default function Login() {
         await storeData('user_id', res.data.idPessoa);
         alert('Sessão iniciada');
 
-        await api
-          .get(`hospedagem/index?idHospede=${res.data.idPessoa}`)
-          .then(async res => {
-            try {
-              await AsyncStorage.setItem('accomodation_id', res.data.idHospedagem);
-              await AsyncStorage.setItem('room', res.data.quarto.numero);
-              history.push("/home");
-            } catch (err) {
-              await AsyncStorage.removeItem('accomodation_id');
-              await AsyncStorage.removeItem('room');
+        if (res.data.cargo || res.data.salario) {
+          history.push("/kitchen");
+        } else {
+          await api
+            .get(`hospedagem/index?idHospede=${res.data.idPessoa}`)
+            .then(async res => {
+              try {
+                await AsyncStorage.setItem('accomodation_id', res.data.idHospedagem);
+                await AsyncStorage.setItem('room', res.data.quarto.numero);
+                history.push("/home");
+              } catch (err) {
+                await AsyncStorage.removeItem('accomodation_id');
+                await AsyncStorage.removeItem('room');
+                history.push('/accomodation');
+              }
+            }).catch(async err => {
               history.push('/accomodation');
-            }
-          }).catch(async err => {
-            history.push('/accomodation');
-          })
+            })
+        }
       }).catch(async err => {
         await AsyncStorage.clear();
         alert('Credenciais inválidas');
