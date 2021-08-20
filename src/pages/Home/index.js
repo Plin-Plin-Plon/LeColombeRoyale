@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import history from "../../history";
+import Spinner	from "react-spinners/PulseLoader";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import api from '../../services/api';
@@ -174,6 +175,7 @@ export default function Home() {
             <span>
               Carregando informações da sua hospedagem
             </span>
+            <Spinner loading={loading} size={15} />
           </div>
         )}
       </div>

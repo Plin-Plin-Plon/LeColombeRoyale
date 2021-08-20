@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Spinner from "react-spinners/PulseLoader";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import api from '../../services/api'
@@ -69,7 +70,7 @@ export default function Servicing() {
 
   return (
     <div className="body">
-      <Navbar/>
+      <Navbar />
       <div className="container">
         <header>
           <div>
@@ -92,22 +93,23 @@ export default function Servicing() {
         <h1>Nossos pratos:</h1>
         <div className="listContainer">
           <ul>
-            {services.length !== 0 ?
-              services.map(services => (
-                <li key={services.idServico}>
-                  <div className="title">
-                    <strong>{services.nome}</strong>
-                  </div>
-                  <p>{services.descricao}</p>
-                  <strong>Preço: R${services.preco}</strong>
-                  <p>Código: {services.idServico}</p>
-                </li>
-              ))
-              :
-              <div className="no-service-found">
-                <span>Nenhum prato encontrado</span>
-              </div>
-            }
+            {!loading ? (
+              services.length !== 0 ? (
+                services.map(services => (
+                  <li key={services.idServico}>
+                    <div className="title">
+                      <strong>{services.nome}</strong>
+                    </div>
+                    <p>{services.descricao}</p>
+                    <strong>Preço: R${services.preco}</strong>
+                    <p>Código: {services.idServico}</p>
+                  </li>
+                ))
+              ) : (
+                <div className="no-service-found">
+                  <span>Nenhum prato encontrado</span>
+                </div>
+              )) : <Spinner loading={loading} size={20} />}
           </ul>
         </div>
       </div>

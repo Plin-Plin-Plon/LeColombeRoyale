@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Spinner	from "react-spinners/PulseLoader";
 
 import api from '../../services/api'
 import Logout from '../../Components/Logout/Logout';
@@ -49,7 +50,7 @@ export default function Kitchen() {
 
   return (
     <div className="body">
-      <Navbar/>
+      <Navbar />
       <div className="container">
         <header>
           <div>
@@ -62,26 +63,27 @@ export default function Kitchen() {
         <h1>Pedidos pendentes:</h1>
         <div className="listContainer">
           <ul>
-            {orders.length !== 0 ?
-              orders.map(order => (
-                <li key={order.idPedido}>
-                  <div className="title">
-                    <strong>{order.servico.nome}</strong>
-                  </div>
-                  <p>Código do pedido: {order.idPedido}</p>
-                  <p>Código do prato: {order.servico.idServico}</p>
-                  <p>{order.servico.descricao}</p>
-                  <strong>Entregar no quarto: {order.quarto.numero}</strong>
-                  <button onClick={() => { handleItemConclusion(order) }} type="button">
-                    Concluido
-                  </button>
-                </li>
-              ))
-              :
+            {!loading ? (
+              orders.length !== 0 ? (
+                orders.map(order => (
+                  <li key={order.idPedido}>
+                    <div className="title">
+                      <strong>{order.servico.nome}</strong>
+                    </div>
+                    <p>Código do pedido: {order.idPedido}</p>
+                    <p>Código do prato: {order.servico.idServico}</p>
+                    <p>{order.servico.descricao}</p>
+                    <strong>Entregar no quarto: {order.quarto.numero}</strong>
+                    <button onClick={() => { handleItemConclusion(order) }} type="button">
+                      Concluido
+                    </button>
+                  </li>
+                ))
+            ) : (
               <div className="no-order-found">
                 <span>Nenhum pedido pendente</span>
               </div>
-            }
+            )) : <Spinner loading={loading} size={20} />}
           </ul>
         </div>
       </div>
