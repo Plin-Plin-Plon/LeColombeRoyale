@@ -1,4 +1,10 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url(../../assets/fonts/Montserrat-Regular.otf) format('truetype');
+  }
+
 .body {
+    font-family: 'Montserrat';
     background: #eee;
     height: 100%;
     width: 100%;
@@ -21,6 +27,7 @@
 }
 
 .container header span {
+    font-family: 'Montserrat';
     font-size: 25px;
     margin-left: 24px;
 }

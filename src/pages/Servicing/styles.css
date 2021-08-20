@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url(../../assets/fonts/Montserrat-Regular.otf) format('truetype');
+    font-family: 'Montserrat-Semibold';
+    src: local('Montserrat-Semibold'), url(../../assets/fonts/Montserrat-SemiBold.otf) format('truetype');
+  }
+
 .body {
     background: #eee;
     height: 100%;
@@ -21,6 +28,7 @@
 }
 
 .container header span {
+    font-family: 'Montserrat';
     font-size: 25px;
     margin-left: 24px;
 }
@@ -71,6 +79,7 @@
 
 .container ul li button {
     color: #fff;
+    font-family: 'Montserrat';
     font-size: 16px;
     background: #fc6963;
     height: 56px;
@@ -96,15 +105,18 @@
 
 .container ul li p {
     color: #737380;
+    font-family: 'Montserrat';
     line-height: 21px;
     font-size: 16px;
 }
 
 .title strong {
+    font-family: 'Montserrat-Semibold';
     font-size: 20px;
 }
 
 .no-service-found span {
+    font-family: 'Montserrat';
     font-size: 20px;
 }
 
@@ -121,6 +133,7 @@
     border-radius: 8px;
     padding: 0 20px;
     color: #777;
+    font-family: 'Montserrat';
     font-size: 20px;
     width: 90%;
     border: 2px solid #ddd;
@@ -128,6 +141,7 @@
 
 .container button {
     color: #fff;
+    font-family: 'Montserrat';
     font-size: 16px;
     background: #fc6963;
     height: 40px;
