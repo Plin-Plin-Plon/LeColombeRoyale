@@ -3,71 +3,78 @@
     src: local('Montserrat'), url(../../assets/fonts/Montserrat-Regular.otf) format('truetype');
   }
 
-.body {
+.body{
     background: #eee;
-    height: 100%;
-    width: 100%;
-}
+      font-family: 'Montserrat';
+      text-rendering: optimizeLegibility !important;
+      -webkit-font-smoothing: antialiased !important;
+      height: 100%;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      outline: 0;
+    }
 
-.register-container {
+.Container {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
 }
 
-.register-container span{
-    color: #777;
-    font-family: 'Montserrat';
-    font-size: 20px;
-    padding-right: 10px;
-}
+.Container form {
 
-.switch{
-    display: flex;
-    padding-left: 70px;
-}
-
-.register-container form {
-    width: 600px;
+    width: 400px;
     background: #fff;
     padding: 20px;
-    padding-right: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 8px;
 }
 
-.register-container img {
+
+.Container img {
     width: 100px;
     margin: 10px 0 40px;
-    padding-left: 70px;
 }
 
-.register-container p {
+.Container p {
+    font-family: 'Montserrat';
     color: #ff3333;
     margin-bottom: 15px;
     border: 1px solid #ff3333;
     padding: 10px;
     width: 100%;
-    font-family: 'Montserrat';
     text-align: center;
 }
 
-.register-container input {
+.Container input {
     height: 40px;
     border-radius: 8px;
     margin-bottom: 15px;
     padding: 0 20px;
-    color: #111;
+    color: #777;
     font-family: 'Montserrat';
     font-size: 20px;
     width: 90%;
     border: 2px solid #ddd;
 }
 
-.register-container button {
+.Container select {
+    height: 40px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 0 20px;
+    color: #777;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    width: 100%;
+    border: 2px solid #ddd;
+}
+
+.Container button {
     color: #fff;
     font-family: 'Montserrat';
     font-size: 16px;
@@ -75,37 +82,21 @@
     height: 56px;
     border: 0;
     border-radius: 5px;
-    width: 65%;
-    cursor: pointer;
+    width: 100%;
 }
 
-.register-container button:hover {
-    opacity: 0.8;
-}
-
-.register-container hr {
+.Container hr {
+    font-family: 'Montserrat';
     margin: 20px 0;
     border: none;
     border-bottom: 1px solid #cdcdcd;
     width: 100%;
 }
 
-.register-container a {
+.Container a {
     font-family: 'Montserrat';
     font-size: 16;
     font-weight: bold;
     color: #999;
     text-decoration: none;
-}
-
-.register-container ul {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: 0px;
-    column-gap: 40px;
-    list-style: none;
-}
-
-.register-container ul li {
-    position: relative;
 }

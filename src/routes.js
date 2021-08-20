@@ -1,20 +1,31 @@
 import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+import history from "./history";
 
-import Logon from './pages/Logon'
-import Logado from './pages/Logado'
-import Register from './pages/Register'
-import Kitchen from './pages/Kitchen'
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Kitchen from './pages/Kitchen';
+import Accommodation from './pages/Accommodation';
+import Servicing from './pages/Servicing';
+import Home from './pages/Home';
+import Room from './pages/CreateRoom'
+import Details from './pages/MyAccount'
+import Finish from './pages/FinishAccommodation'
 
-export default function routes() {
+export default function Routes() {
   return (
-    <BrowserRouter>
-      <switch>
-        <Route path="/logon" component={Logon} />
-        <Route path="/logado" component={Logado} />
-        <Route path="/" exact component={Register} />
-        <Route path="/kitchen" exact component={Kitchen} />
-      </switch>
-    </BrowserRouter>
+    <Router history={history}>
+      <Switch>
+        <Route path="/" exact component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/kitchen" component={Kitchen} />
+        <Route path="/accommodation" component={Accommodation} />
+        <Route path="/servicing" component={Servicing} />
+        <Route path="/home" component={Home} />
+        <Route path="/createroom" component={Room} />
+        <Route path="/details" component={Details} />
+        <Route path="/finish" component={Finish} />
+      </Switch>
+    </Router>
   );
 }

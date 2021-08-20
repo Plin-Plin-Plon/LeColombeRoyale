@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url(../../assets/fonts/Montserrat-Regular.otf) format('truetype');
+    font-family: 'Montserrat-Semibold';
+    src: local('Montserrat-Semibold'), url(../../assets/fonts/Montserrat-SemiBold.otf) format('truetype');
+ }
+
 .body{
     background: #eee;
       font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
@@ -25,6 +32,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 8px;
 }
 
 
@@ -39,6 +47,7 @@
     border: 1px solid #ff3333;
     padding: 10px;
     width: 100%;
+    font-family: 'Montserrat';
     text-align: center;
 }
 
@@ -48,6 +57,7 @@
     margin-bottom: 15px;
     padding: 0 20px;
     color: #777;
+    font-family: 'Montserrat';
     font-size: 20px;
     width: 90%;
     border: 2px solid #ddd;
@@ -55,6 +65,7 @@
 
 .Container button {
     color: #fff;
+    font-family: 'Montserrat';
     font-size: 16px;
     background: #fc6963;
     height: 56px;
@@ -71,8 +82,8 @@
 }
 
 .Container a {
+    font-family: 'Montserrat-Semibold';
     font-size: 16;
-    font-weight: bold;
     color: #999;
     text-decoration: none;
 }
