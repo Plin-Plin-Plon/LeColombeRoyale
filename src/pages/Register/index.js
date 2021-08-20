@@ -283,7 +283,7 @@ export default function Register() {
           {toggle ? (
             <button type="submit">Cadastrar Funcionário</button>
           ) : (
-            <button type="submit">Cadastrar Hóspede</button>
+            <button type="submit">{logged === 1 || logged === 2 ? "Cadastrar Hóspede" : "Criar conta"}</button>
           )}
 
           <hr />
