@@ -30,8 +30,8 @@ export default function MyAcoount() {
       async function fetchUserData() {
         const userId = await syncLoadData('user_id');
 
-        await (await api
-          .get(`hospede/index?id=${userId}`))
+        await api
+          .get(`hospede/index?id=${userId}`)
           .then(res => {
             setHospede(res.data)
           })
