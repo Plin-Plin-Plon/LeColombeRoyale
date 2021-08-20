@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './styles.css';
-import { cpfMask, celularMask, telefoneMask, cepMask } from "masks-br";
-import api from '../../services/api'
-import Logo from '../../assets/PC.png';
 import Switch from "react-switch";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { cpfMask, celularMask, telefoneMask, cepMask } from "masks-br";
+import jwt_decode from 'jwt-decode';
+
+import api from '../../services/api'
 import history from "../../history";
 
+import Logo from '../../assets/PC.png';
+import './styles.css';
+
+
 export default function Register() {
+  const [logged, setLogged] = useState(false);
   const [nome, setNome] = useState('');
   const [cpf, setCpf] = useState('');
 
@@ -45,6 +51,27 @@ export default function Register() {
   const [toggle, setToggle] = useState(false);
   const handleSwitch = () => setToggle(!toggle);
   const handlePremium = () => setPremium(!premium);
+
+  useEffect(() => {
+    async function checkLoggedUser() {
+      try {
+        const token = await AsyncStorage.getItem('token');
+        const decodedToken = jwt_decode(token);
+
+        if (decodedToken.roles === "ROLE_USER") {
+          setLogged(3);
+        } else if (decodedToken.roles === "ROLE_MOD,ROLE_USER") {
+          setLogged(2);
+        } else {
+          setLogged(1);
+        }
+      } catch (err) {
+        setLogged(false);
+      }
+    }
+
+    checkLoggedUser();
+  }, [])
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -258,7 +285,10 @@ export default function Register() {
           )}
 
           <hr />
-          <Link to="/">Fazer login</Link>
+          {logged === false ? <Link to="/">Fazer login</Link>
+            : logged === 1 || logged === 3 ?
+              <Link to="/home">Voltar para a minha hospedagem</Link>
+              : <Link to="/kitchen">Voltar para a cozinha</Link>}
         </form>
       </div>
     </div>
