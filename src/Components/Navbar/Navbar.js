@@ -30,24 +30,27 @@ function Navbar() {
 
   useEffect(() => {
     if (loading) {
-      try{
-        const token = getToken();
+      async function setSideBarData() {
+        const token = await getToken();
 
-      if (jwt_decode(token).roles === "ROLE_USER") {
-        setData(SidebarDataCli);
+        if (token) {
+          const decodedToken = jwt_decode(token);
+
+          if (decodedToken.roles === "ROLE_USER") {
+            setData(SidebarDataCli);
+          }
+          else if (decodedToken.roles === "ROLE_MOD,ROLE_USER") {
+            setData(SidebarDataFun);
+          }
+          else {
+            setData(SidebarData);
+          }
+          setLoading(false);
+        }
       }
-      else if (jwt_decode(token).roles === "ROLE_MOD") {
-        setData(SidebarDataFun);
-      }
-      else {
-        setData(SidebarData);
-      }
-      setLoading(false);
+
+      setSideBarData();
     }
-    catch(err){
-      return null;
-    }
-  }
   }, [loading])
 
   return (
