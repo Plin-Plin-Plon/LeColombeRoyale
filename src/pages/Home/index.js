@@ -16,6 +16,7 @@ export default function Home() {
   const [roomNumber, setRoomNumber] = useState(null);
   const [totalValue, setTotalValue] = useState("");
   const [orders, setOrders] = useState([]);
+  const [recommendedServices, setRecommendedServices] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -68,7 +69,20 @@ export default function Home() {
           })
       }
 
+      async function fetchRecommendedServices() {
+        const userId = await syncLoadData('user_id');
+
+        await api
+          .get(`servico/recommend?idPessoa=${userId}`)
+          .then(async res => {
+            setRecommendedServices(res.data);
+          }).catch(async err => {
+            console.log(err);
+          })
+      }
+
       fetchAccomodation();
+      fetchRecommendedServices();
     }
   }, [loading]);
 
@@ -78,7 +92,7 @@ export default function Home() {
 
   return (
     <div className="body">
-      <Navbar/>
+      <Navbar />
       <div className="container">
         <header>
           <div>
@@ -126,14 +140,27 @@ export default function Home() {
                   <span>Nenhum pedido encontrado</span>
                 </div>
               }
-            </ul>
-            <h1>Recomendamos para você: </h1>
+              {recommendedServices.length !== 0 ? <h1>Recomendamos para você:</h1> : null}
+              <ul>
+                {recommendedServices.length !== 0 ?
+                  recommendedServices.map(service => (
+                    <li key={service.idServico}>
+                      <div className="title">
+                        <strong>{service.nome}</strong>
+                      </div>
+                      <p>{service.descricao}</p>
+                      <p>Código: {service.idServico}</p>
 
-            <div className="menuButton">
-              <button onClick={navigateToServices} type="button">
-                Fazer um pedido
-              </button>
-            </div>
+                      <div className="menuButton">
+                        <button onClick={navigateToServices} type="button">
+                          Veja-o em nossos serviços
+                        </button>
+                      </div>
+                    </li>
+                  ))
+                  : null}
+              </ul>
+            </ul>
           </>
         ) : !loading && !roomNumber ? (
           <div>
