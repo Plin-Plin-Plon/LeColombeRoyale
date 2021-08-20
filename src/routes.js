@@ -9,6 +9,7 @@ import Acommodation from './pages/Accommodation';
 import Servicing from './pages/Servicing';
 import Home from './pages/Home';
 import Room from './pages/CreateRoom'
+import Details from './pages/MyAccount'
 
 export default function Routes() {
   return (
@@ -21,6 +22,7 @@ export default function Routes() {
         <Route path="/servicing" component={Servicing} />
         <Route path="/home" component={Home} />
         <Route path="/createroom" component={Room} />
+        <Route path="/details" component={Details} />
       </Switch>
     </Router>
   );

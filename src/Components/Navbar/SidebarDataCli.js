@@ -1,6 +1,6 @@
 import React from 'react';
 import * as AiIcons from 'react-icons/ai';
-import {FiCoffee, FiHome, FiLogIn, FiShoppingCart} from "react-icons/fi";
+import { FiHome, FiShoppingCart } from "react-icons/fi";
 
 export const SidebarDataCli = [
 

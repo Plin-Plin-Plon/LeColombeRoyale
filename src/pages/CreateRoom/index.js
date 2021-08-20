@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useState } from 'react';
 import api from '../../services/api'
-import Logout from '../../Components/Logout/Logout';
 import './styles.css';
 import Logo from '../../assets/PC.png';
 
@@ -26,7 +24,7 @@ export default function CreateRoom() {
       .post("quarto/create", data)
       .then(res => {
         if (res.data.message) {
-          alert(res.data.message);  
+          alert(res.data.message);
         } else {
           alert('Quarto criado com sucesso');
         }
